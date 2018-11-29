@@ -18,6 +18,9 @@ function drawBackground(){
     // add some text
     ctx.fillStyle = "green";
     ctx.font = "30px Arial";
+    //                       ========> interpolate score here
+    //                       |
+    //                       V
     ctx.fillText(`Score: ${score} `, 800, 50);
 }
 // drawBackground();
@@ -51,8 +54,8 @@ let supermanY = 200;
 //     ctx.drawImage(supermanImg, supermanX, supermanY, 150, 150);
 // }
 
-// move the superman!
 
+// move the superman!
 document.onkeydown = function(event){
     // console.log(event.keyCode);
     switch(event.keyCode){
@@ -91,12 +94,14 @@ function drawingLoop(){
     if(fireballX < -50){
         // set its x again to fireballX=1000
         fireballX = 1000;
-        // and for each ball pick random Y in range 0 to 500 (which is height of the canvas)
+        // and for each ball pick random Y in range 0 to 450 (which is height of the canvas - the height of the fireball)
         fireballY = Math.floor(Math.random() * 450);
     }
 
     drawEverything();
 
+    // as long as isOver stays false, keep redrawing; 
+    // isOver gets value true only in case collision when gameOver() is invoked
     if(isOver === false){
         // re-draw the whole screen
         requestAnimationFrame(function(){
@@ -120,11 +125,13 @@ function drawEverything(){
         gameOver();
     }
 
+    // manage the score here
     if(fireballX === 0){
         score++;
     }
 }
 
+// all 4 conditions need to be true in order to return true 
 function checkCollision(obj1x, obj1y, obj2x, obj2y){
         // supermanY + superman-height >= fireballY
     return obj1y + 150 - 50 >= obj2y
