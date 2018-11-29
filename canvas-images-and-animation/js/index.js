@@ -126,9 +126,9 @@ function drawEverything(){
 }
 
 function checkCollision(obj1x, obj1y, obj2x, obj2y){
-    // supermanY + superman-height >= fireballY
+        // supermanY + superman-height >= fireballY
     return obj1y + 150 - 50 >= obj2y
-    // supermanY <= fireballY + fireball-height
+        // supermanY <= fireballY + fireball-height
         && obj1y <= obj2y + 50
         // supermanX + superman-width >= fireballX
         && obj1x + 150 - 50 >= obj2x
@@ -147,14 +147,14 @@ function gameOver(){
     tiredSupermanImg.src = "./images/tired_superman.png";
     // tiredSupermanImg.src = "images/tired_superman.png"; => when deployed delete "./"
     tiredSupermanImg.onload = function(){
-        ctx.drawImage(tiredSupermanImg, 480, 300, 150, 150);
+        ctx.drawImage(tiredSupermanImg, 400, 300, 150, 150);
     }
     // change the value of isOver to true
     isOver = true;
     // display Game Over
     ctx.font = "bold 70px Arial";
     ctx.fillStyle = "red";
-    ctx.fillText("Game Over", 400, 225);
+    ctx.fillText("Game Over", 310, 225);
 }
 
 // call drawingLoop() to start looping (after this point it will recursively call itself)
